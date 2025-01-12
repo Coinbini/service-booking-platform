@@ -1,0 +1,81 @@
+### Register a new client
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "client@example.com",
+  "password": "password123",
+  "firstName": "John",
+  "lastName": "Doe",
+  "phone": "+1234567890"
+}
+
+### Register a new service provider
+POST http://localhost:3000/api/auth/register-provider
+Content-Type: application/json
+
+{
+  "email": "provider@example.com",
+  "password": "password123",
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "phone": "+1987654321",
+  "services": [],
+  "serviceArea": {
+    "coordinates": [48.8566, 2.3522],
+    "radius": 10
+  }
+}
+
+### Login
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "client@example.com",
+  "password": "password123"
+}
+
+### Get current user profile
+GET http://localhost:3000/api/auth/me
+Authorization: Bearer YOUR_TOKEN_HERE
+
+### Create a new service
+POST http://localhost:3000/api/services
+Authorization: Bearer YOUR_TOKEN_HERE
+Content-Type: application/json
+
+{
+  "name": "House Cleaning",
+  "category": "Home Services",
+  "description": "Professional house cleaning service",
+  "price": 80,
+  "duration": 180,
+  "availability": [
+    {
+      "day": "monday",
+      "slots": [
+        {
+          "startTime": "09:00",
+          "endTime": "17:00"
+        }
+      ]
+    }
+  ]
+}
+
+### Get all services
+GET http://localhost:3000/api/services
+
+### Get service by ID
+GET http://localhost:3000/api/services/SERVICE_ID_HERE
+
+### Add promotion to service
+POST http://localhost:3000/api/services/SERVICE_ID_HERE/promotions
+Authorization: Bearer YOUR_TOKEN_HERE
+Content-Type: application/json
+
+{
+  "discountPercentage": 20,
+  "validUntil": "2025-02-12T00:00:00.000Z"
+}
